@@ -1,0 +1,32 @@
+service: chatbot-serverless
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: dev
+  region: ap-southeast-2
+  memorySize: 128
+
+plugins:
+  - serverless-python-requirements
+
+package:
+  exclude:
+    - venv/**
+    - .pytest_cache/**
+    - assets/**
+
+custom:
+  pythonRequirements:
+    usePipenv: false
+#    slim: true
+#    zip: true
+
+functions:
+  slackbot:
+    handler: slackbot.lambda_handler
+    environment:
+      BOT_TOKEN: xoxb-486427151904-588852897730-t06kD5jNU9d2EwlqCgE1kjQ2
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
