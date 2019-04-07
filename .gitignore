@@ -105,3 +105,13 @@ venv.bak/
 
 # pycharm
 .idea
+
+# node modules
+node_modules
+
+# serverless deployment
+.serverless
+.requirements.zip
+
+#pytest
+.pytest_cache
